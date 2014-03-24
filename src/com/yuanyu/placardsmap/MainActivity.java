@@ -31,14 +31,13 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 		
 		/**
          * 使用地图sdk前需先初始化BMapManager.
          * BMapManager是全局的，可为多个MapView共用，它需要地图模块创建前创建，
          * 并在地图地图模块销毁后销毁，只要还有地图模块在使用，BMapManager就不应该销毁
          */
-        CustomApplication app = (CustomApplication)this.getApplication();
+        CustomApplication app = (CustomApplication) getApplication();
         if (app.mBMapManager == null) {
             app.mBMapManager = new BMapManager(getApplicationContext());
             /**

@@ -14,7 +14,7 @@ public class CustomApplication extends Application {
 	public boolean m_bKeyRight = true;
 	BMapManager mBMapManager = null;
 
-	public static final String strKey = "D388cdb60225303eb120ef0fe5e78a17";
+	public static final String strKey = "i1w8NunikLM0lAotvc7HaVon";
 
 	@Override
 	public void onCreate() {
