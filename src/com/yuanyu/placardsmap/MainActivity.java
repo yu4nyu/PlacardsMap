@@ -15,6 +15,9 @@ import android.view.Menu;
 
 public class MainActivity extends Activity {
 
+	private final static double START_LONGITUDE = 119.167313;
+	private final static double START_LATITUDE = 36.713043;
+	
 	/**
 	 *  MapView 是地图主控件
 	 */
@@ -69,16 +72,13 @@ public class MainActivity extends Activity {
          * 如果需要在百度地图上显示使用其他坐标系统的位置，请发邮件至mapapi@baidu.com申请坐标转换接口
          */
         GeoPoint p ;
-        double cLat = 39.945 ;
-        double cLon = 116.404 ;
         Intent  intent = getIntent();
         if ( intent.hasExtra("x") && intent.hasExtra("y") ){
         	//当用intent参数时，设置中心点为指定点
         	Bundle b = intent.getExtras();
         	p = new GeoPoint(b.getInt("y"), b.getInt("x"));
         }else{
-        	//设置中心点为天安门
-        	 p = new GeoPoint((int)(cLat * 1E6), (int)(cLon * 1E6));
+        	p = new GeoPoint((int)(START_LATITUDE * 1E6), (int)(START_LONGITUDE * 1E6));
         }
         
         mMapController.setCenter(p);
