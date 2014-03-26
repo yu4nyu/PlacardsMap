@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 
-public class PlcardsLocations {
+public class PlacardsLocations {
 	
 	public static List<GeoPoint> getGeoPoints() {
 		List<GeoPoint> result = new ArrayList<GeoPoint>();
