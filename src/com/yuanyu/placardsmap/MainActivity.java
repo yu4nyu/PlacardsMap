@@ -70,6 +70,7 @@ public class MainActivity extends Activity {
 		initMapView();
 		initMapViewListener();
 		initOverlay();
+		setMapCenter();
 	}
 
 	private void initMapView() {
@@ -91,7 +92,9 @@ public class MainActivity extends Activity {
 		 * 显示内置缩放控件
 		 */
 		mMapView.setBuiltInZoomControls(true);
-
+	}
+	
+	private void setMapCenter() {
 		/**
 		 * 将地图移动至指定点
 		 * 使用百度经纬度坐标，可以通过http://api.map.baidu.com/lbsapi/getpoint/index.html查询地理坐标
@@ -160,7 +163,6 @@ public class MainActivity extends Activity {
 			@Override
 			public void onMapLoadFinish() {
 				Toast.makeText(MainActivity.this, "地图加载完成", Toast.LENGTH_SHORT).show();
-
 			}
 		};
 		mMapView.regMapViewListener(CustomApplication.getInstance().mBMapManager, mMapListener);
@@ -170,7 +172,7 @@ public class MainActivity extends Activity {
     	/**
     	 * 创建自定义overlay
     	 */
-         mOverlay = new PlacardsLocationOverlay(getResources().getDrawable(R.drawable.icon_geo), mMapView);	
+         mOverlay = new PlacardsLocationOverlay(getResources().getDrawable(R.drawable.icon_mark), mMapView);	
          
          /**
           * 准备overlay 数据
@@ -181,12 +183,12 @@ public class MainActivity extends Activity {
         	 /**
               * 设置overlay图标，如不设置，则使用创建ItemizedOverlay时的默认图标.
               */
-             //item.setMarker(getResources().getDrawable(R.drawable.icon_geo)); TODO
+             item.setMarker(getResources().getDrawable(R.drawable.icon_mark));
         	 mOverlay.addItem(item);
          }
          
          /**
-          * 保存所有item，以便overlay在reset后重新添加
+          * 保存所有item
           */
          mItems = new ArrayList<OverlayItem>();
          mItems.addAll(mOverlay.getAllItem());
