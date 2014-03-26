@@ -168,11 +168,11 @@ public class MainActivity extends Activity {
 		mMapView.regMapViewListener(CustomApplication.getInstance().mBMapManager, mMapListener);
 	}
 	
-	public void initOverlay(){
+	public void initOverlay() {
     	/**
     	 * 创建自定义overlay
     	 */
-         mOverlay = new PlacardsLocationOverlay(getResources().getDrawable(R.drawable.icon_mark), mMapView);	
+         mOverlay = new PlacardsLocationOverlay(getResources().getDrawable(R.drawable.icon_marka), mMapView);	
          
          /**
           * 准备overlay 数据
@@ -183,7 +183,12 @@ public class MainActivity extends Activity {
         	 /**
               * 设置overlay图标，如不设置，则使用创建ItemizedOverlay时的默认图标.
               */
-             item.setMarker(getResources().getDrawable(R.drawable.icon_mark));
+        	 if(i%2 == 0) {
+                 item.setMarker(getResources().getDrawable(R.drawable.icon_marka));
+        	 }
+        	 else {
+                 item.setMarker(getResources().getDrawable(R.drawable.icon_markb));
+        	 }
         	 mOverlay.addItem(item);
          }
          
@@ -210,6 +215,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClickedPopup(int index) {
 				// Nothing to do now, may be used in the future
+		        mMapView.refresh();
 			}
          };
          mPop = new PopupOverlay(mMapView, popListener);
@@ -253,7 +259,6 @@ public class MainActivity extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
     	super.onSaveInstanceState(outState);
     	mMapView.onSaveInstanceState(outState);
-    	
     }
     
     @Override
@@ -269,6 +274,7 @@ public class MainActivity extends Activity {
 		public PlacardsLocationOverlay(Drawable defaultMarker, MapView mapView) {
 			super(defaultMarker, mapView);
 			mPopupButton = new Button(MainActivity.this);
+			mPopupButton.setBackgroundResource(R.drawable.popup);
 		}
 
 		@Override
